@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#059669">
+<meta name="description" content="Noite de Alerta — protocolo de 5 dias pra interromper o ciclo de noites ruins que tá piorando sua energia e disposição.">
+<title>Noite de Alerta — Interrompa o Ciclo de Noites Ruins em 5 Dias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F5F5F5;
+  --bg-2: #FFFFFF;
+  --bg-soft: #E8F5EF;
+  --line: rgba(11, 61, 46, 0.08);
+  --line-green: rgba(5, 150, 105, 0.28);
+  --green: #059669;
+  --green-strong: #10B981;
+  --green-dark: #047857;
+  --green-glow: rgba(16, 185, 129, 0.35);
+  --ink: #0C1F17;
+  --dim: #3D5249;
+  --faint: #7A9088;
+  --rose: #DC2626;
+  --serif: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --shadow-sm: 0 1px 3px rgba(11, 61, 46, 0.04);
+  --shadow: 0 4px 24px -6px rgba(11, 61, 46, 0.1);
+  --shadow-lg: 0 12px 40px -8px rgba(11, 61, 46, 0.14);
+  --shadow-xl: 0 20px 56px -12px rgba(5, 150, 105, 0.22);
+  --radius: 16px;
+  --radius-sm: 12px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration: 0.35s;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--sans);
+  font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; overflow-x: hidden; text-rendering: optimizeLegibility;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, a.btn { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+.wrap { max-width: 620px; margin: 0 auto; padding: 0 20px; }
+.wrap-w { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+h1,h2,h3 { font-family: var(--serif); font-weight: 800; line-height: 1.25; letter-spacing: -0.03em; color: var(--ink); text-wrap: balance; }
+h1 { font-size: clamp(1.55rem, 5vw, 2.45rem); }
+h2 { font-size: clamp(1.3rem, 3.8vw, 1.9rem); margin-bottom: 12px; }
+h3 { font-size: 1.05rem; }
+p { color: var(--dim); font-size: 1rem; margin-bottom: 0.95rem; max-width: 54ch; text-wrap: pretty; }
+.lede { font-size: clamp(0.95rem, 2.4vw, 1.1rem); color: var(--dim); line-height: 1.65; }
+.center { text-align: center; }
+.center h2, .center p, .center .lede { margin-left: auto; margin-right: auto; }
+.bg-w { background: var(--bg-2); }
+section { padding: 52px 0; content-visibility: auto; contain-intrinsic-size: auto 600px; }
+@media (min-width: 768px) { section { padding: 72px 0; } }
+.hl { color: var(--green-dark); font-weight: 700; background: linear-gradient(180deg, transparent 62%, rgba(16,185,129,0.2) 62%); padding: 0 2px; border-radius: 2px; }
+.hl-ink { color: var(--ink); font-weight: 700; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; width: 100%; max-width: 420px;
+  background: linear-gradient(165deg, var(--green-strong) 0%, var(--green) 45%, var(--green-dark) 100%);
+  color: #fff; font-weight: 800; font-size: clamp(0.92rem, 2.4vw, 1.05rem); padding: 18px 24px; border-radius: 14px; border: none; cursor: pointer;
+  box-shadow: 0 8px 28px -4px var(--green-glow), 0 1px 0 rgba(255,255,255,0.18) inset;
+  transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease), filter var(--duration) var(--ease);
+  text-align: center; letter-spacing: 0.01em; position: relative; overflow: hidden; isolation: isolate;
+}
+.btn::after { content: ''; position: absolute; inset: 0; background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.12) 50%, transparent 60%); transform: translateX(-120%); transition: transform 0.6s var(--ease); pointer-events: none; }
+.btn:hover { transform: translateY(-3px) scale(1.012); box-shadow: 0 14px 36px -4px rgba(5,150,105,0.48), 0 1px 0 rgba(255,255,255,0.18) inset; filter: brightness(1.03); }
+.btn:hover::after { transform: translateX(120%); }
+.btn:active { transform: translateY(0) scale(0.985); filter: brightness(0.97); }
+.btn:focus-visible { outline: 3px solid var(--green-strong); outline-offset: 3px; }
+.btn-pulse { animation: btnPulse 2.6s ease-in-out infinite; }
+@keyframes btnPulse { 0%,100% { box-shadow: 0 8px 28px -4px var(--green-glow), 0 1px 0 rgba(255,255,255,0.18) inset; } 50% { box-shadow: 0 8px 42px -2px rgba(16,185,129,0.55), 0 1px 0 rgba(255,255,255,0.18) inset; } }
+.cta { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.micro { font-size: 0.76rem; color: var(--faint); font-weight: 500; text-align: center; }
+.hero { text-align: center; padding: 40px 0 52px; background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(16,185,129,0.11) 0%, transparent 60%), linear-gradient(180deg, #fff 0%, var(--bg) 100%); position: relative; }
+.badge { display: inline-flex; align-items: center; gap: 7px; font-size: 0.68rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--green-dark); background: var(--bg-soft); border: 1px solid var(--line-green); padding: 7px 14px; border-radius: 100px; margin-bottom: 18px; animation: fadeUp 0.55s var(--ease-out) both; backdrop-filter: blur(8px); }
+.badge i { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 3px rgba(16,185,129,0.25); animation: blink 1.6s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.28} }
+.hero h1 { max-width: 18ch; margin: 0 auto 16px; animation: fadeUp 0.55s 0.07s var(--ease-out) both; }
+.hero .lede { max-width: 42ch; margin: 0 auto 28px; animation: fadeUp 0.55s 0.14s var(--ease-out) both; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+.story p { font-size: 1.05rem; line-height: 1.8; }
+.story strong { color: var(--ink); font-weight: 700; }
+.punch { font-family: var(--serif); font-weight: 800; font-size: clamp(1.15rem, 3vw, 1.4rem); color: var(--ink); line-height: 1.35; max-width: 34ch; margin: 24px 0; text-wrap: balance; }
+.g2 { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 600px) { .g2 { grid-template-columns: 1fr 1fr; gap: 14px; } }
+.card { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 18px; box-shadow: var(--shadow-sm); transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease); position: relative; overflow: hidden; will-change: transform; }
+.card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--green-strong), var(--green-dark)); opacity: 0; transition: opacity var(--duration) var(--ease); }
+.card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--line-green); }
+.card:hover::before { opacity: 1; }
+.card h3 { margin-bottom: 6px; font-size: 1rem; }
+.card p { margin: 0; font-size: 0.9rem; }
+.fluxo { display: flex; flex-direction: column; align-items: center; max-width: 280px; margin: 28px auto 0; }
+.fi { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 12px 16px; font-size: 0.9rem; font-weight: 600; text-align: center; width: 100%; transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease); }
+.fi:hover { transform: scale(1.035); box-shadow: var(--shadow); }
+.fi.hot { background: linear-gradient(165deg, #fff 0%, var(--bg-soft) 100%); border: 1.5px solid var(--line-green); color: var(--green-dark); box-shadow: 0 4px 16px -4px var(--green-glow); }
+.fa { color: var(--green); font-weight: 800; padding: 3px 0; font-size: 1.15rem; line-height: 1; }
+.solucao-box { background: linear-gradient(165deg, #fff 0%, var(--bg-soft) 100%); border: 1.5px solid var(--line-green); border-radius: var(--radius); padding: 28px 22px; box-shadow: var(--shadow-lg); max-width: 540px; margin: 0 auto; position: relative; }
+.solucao-box::after { content: ''; position: absolute; inset: -1px; border-radius: inherit; background: linear-gradient(135deg, rgba(16,185,129,0.15), transparent 40%, transparent 60%, rgba(5,150,105,0.1)); pointer-events: none; z-index: 0; }
+.solucao-box > * { position: relative; z-index: 1; }
+.solucao-box h3 { font-size: clamp(1.1rem, 2.8vw, 1.3rem); margin-bottom: 14px; color: var(--green-dark); }
+.solucao-box p { max-width: none; font-size: 0.98rem; }
+.solucao-box ul { list-style: none; display: grid; gap: 11px; margin-top: 16px; }
+.solucao-box li { display: flex; gap: 10px; align-items: flex-start; font-size: 0.95rem; color: var(--ink); font-weight: 500; }
+.solucao-box li::before { content: '→'; color: var(--green); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+.pilares { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 700px) { .pilares { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 900px) { .pilares { grid-template-columns: repeat(5, 1fr); } }
+.pilar { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 14px; transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease); will-change: transform; }
+.pilar:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--line-green); }
+.pilar .n { font-family: var(--serif); font-size: 1.4rem; color: var(--green); font-weight: 800; margin-bottom: 6px; line-height: 1; font-variant-numeric: tabular-nums; }
+.pilar h3 { font-size: 0.95rem; margin-bottom: 5px; }
+.pilar p { margin: 0; font-size: 0.84rem; }
+.ng { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+@media (min-width: 560px) { .ng { grid-template-columns: repeat(5, 1fr); } }
+.nt { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 14px 8px; text-align: center; transition: transform 0.28s var(--ease), box-shadow 0.28s var(--ease), border-color 0.28s var(--ease), background 0.28s var(--ease); will-change: transform; }
+.nt:hover { transform: translateY(-4px) scale(1.04); box-shadow: var(--shadow); border-color: var(--line-green); background: linear-gradient(180deg, #fff, var(--bg-soft)); }
+.nt .n { font-family: var(--serif); font-size: 1.3rem; color: var(--green); font-weight: 800; font-variant-numeric: tabular-nums; }
+.nt h3 { font-size: 0.76rem; margin-top: 4px; }
+.nt p { font-size: 0.68rem; color: var(--faint); margin: 2px 0 0; }
+.compare { display: grid; grid-template-columns: 1fr; gap: 12px; max-width: 560px; margin: 0 auto; text-align: left; }
+@media (min-width: 560px) { .compare { grid-template-columns: 1fr 1fr; gap: 14px; } }
+.compare-box { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 16px; box-shadow: var(--shadow-sm); transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease); }
+.compare-box:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.compare-box.depois { border-color: var(--line-green); background: linear-gradient(165deg, #fff 0%, var(--bg-soft) 100%); }
+.compare-box h3 { font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 12px; color: var(--faint); }
+.compare-box.depois h3 { color: var(--green-dark); }
+.compare-box ul { list-style: none; display: grid; gap: 10px; }
+.compare-box li { font-size: 0.9rem; color: var(--ink); font-weight: 500; line-height: 1.45; padding-left: 14px; position: relative; }
+.compare-box li::before { content: '·'; position: absolute; left: 0; color: var(--faint); font-weight: 800; }
+.compare-box.depois li::before { color: var(--green); content: '→'; }
+.cl { list-style: none; display: grid; gap: 10px; max-width: 480px; margin: 0 auto; }
+.cl li { display: flex; gap: 12px; align-items: flex-start; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 14px 16px; font-size: 0.94rem; font-weight: 500; color: var(--ink); transition: transform 0.28s var(--ease), box-shadow 0.28s var(--ease), border-color 0.28s var(--ease); }
+.cl li:hover { transform: translateX(5px); box-shadow: var(--shadow); border-color: var(--line-green); }
+.cl li::before { content: '✓'; color: #fff; background: var(--green); font-weight: 800; flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; margin-top: 1px; box-shadow: 0 2px 6px -1px var(--green-glow); }
+.stack { display: grid; gap: 8px; max-width: 480px; margin: 0 auto; }
+.si { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 13px 15px; font-size: 0.9rem; transition: transform 0.22s var(--ease), box-shadow 0.22s var(--ease); }
+.si:hover { transform: scale(1.012); box-shadow: var(--shadow-sm); }
+.si .nm { font-weight: 500; color: var(--ink); text-align: left; }
+.si .nm small { display: block; color: var(--faint); font-size: 0.74rem; font-weight: 400; margin-top: 2px; line-height: 1.4; }
+.si .pr { font-weight: 600; color: var(--dim); white-space: nowrap; padding-top: 2px; font-variant-numeric: tabular-nums; }
+.si.main { background: #fff; border: 2px solid var(--green); box-shadow: 0 6px 20px -4px var(--green-glow); padding: 16px 15px; }
+.si.main .nm { font-weight: 700; font-size: 0.95rem; }
+.si.main .pr { color: var(--ink); font-weight: 700; font-size: 1rem; }
+.si.main .badge-main { display: inline-block; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: #fff; background: linear-gradient(135deg, var(--green-strong), var(--green-dark)); padding: 3px 9px; border-radius: 5px; margin-bottom: 6px; }
+.si.bn { border-color: var(--line-green); background: linear-gradient(180deg, #fff, var(--bg-soft)); }
+.si.bn .pr { color: var(--green-dark); }
+.si.bn .badge-bn { display: inline-block; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; color: var(--green-dark); background: rgba(16,185,129,0.15); padding: 2px 7px; border-radius: 4px; margin-bottom: 5px; }
+.si.tot { border: none; background: none; font-family: var(--serif); font-weight: 800; font-size: 1.05rem; padding: 10px 2px 0; }
+.si.tot:hover { transform: none; box-shadow: none; }
+.si.tot .pr { text-decoration: line-through; color: var(--faint); font-weight: 500; }
+.offer-box { background: var(--bg-2); border: 2px solid var(--green); border-radius: var(--radius); padding: 28px 20px 32px; box-shadow: var(--shadow-xl); max-width: 480px; margin: 0 auto; position: relative; }
+.offer-box::before { content: ''; position: absolute; top: -1px; left: 20%; right: 20%; height: 3px; background: linear-gradient(90deg, transparent, var(--green-strong), transparent); border-radius: 0 0 4px 4px; }
+.tag { display: inline-block; background: linear-gradient(135deg, var(--green-strong), var(--green-dark)); color: #fff; font-size: 0.68rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: 6px 12px; border-radius: 6px; margin-bottom: 12px; }
+.price-block { text-align: center; margin: 18px 0 6px; }
+.price-block .de { font-size: 0.95rem; color: var(--faint); text-decoration: line-through; }
+.price-block .amt { font-family: var(--serif); font-size: clamp(2.8rem, 9vw, 3.7rem); color: var(--green-dark); font-weight: 800; line-height: 1; display: block; margin: 4px 0; text-shadow: 0 2px 12px rgba(5,150,105,0.15); font-variant-numeric: tabular-nums; }
+.price-block .amt sup { font-size: .38em; top: -.85em; margin-right: 2px; }
+.price-block .parc { font-size: 0.95rem; font-weight: 600; color: var(--ink); }
+.price-block .term { font-size: 0.78rem; color: var(--faint); margin-top: 3px; }
+.urg { display: flex; align-items: center; justify-content: center; gap: 6px; background: linear-gradient(135deg, #FEF2F2, #FFF1F2); border: 1px solid rgba(220,38,38,0.2); border-radius: var(--radius-sm); padding: 12px 14px; margin: 16px 0 18px; font-size: 0.9rem; color: var(--dim); font-weight: 500; }
+.urg .tm { font-weight: 800; color: var(--rose); font-variant-numeric: tabular-nums; font-size: 1.12rem; animation: urgPulse 1.5s ease-in-out infinite; min-width: 3.2em; text-align: center; }
+@keyframes urgPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.65; } }
+.gar { display: flex; gap: 12px; align-items: flex-start; background: var(--bg-soft); border: 1px solid var(--line-green); border-radius: var(--radius-sm); padding: 15px; margin-bottom: 20px; text-align: left; }
+.gar svg { width: 24px; height: 24px; stroke: var(--green); fill: none; stroke-width: 1.5; flex-shrink: 0; margin-top: 1px; }
+.gar h3 { font-size: 0.95rem; margin-bottom: 2px; }
+.gar p { margin: 0; font-size: 0.86rem; }
+.resumo { max-width: 480px; margin: 16px auto 0; background: linear-gradient(165deg, #fff 0%, var(--bg-soft) 100%); border: 1.5px solid var(--line-green); border-radius: 14px; padding: 18px 18px 16px; box-shadow: var(--shadow); text-align: left; }
+.resumo-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--green-dark); margin: 0 0 8px; }
+.resumo-texto { font-size: 0.95rem; color: var(--ink); line-height: 1.55; margin: 0 0 12px; max-width: none; }
+.resumo-texto strong { color: var(--green-dark); font-weight: 700; }
+.resumo-fecho { font-size: 0.82rem; color: var(--dim); margin: 0; padding-top: 12px; border-top: 1px dashed var(--line); max-width: none; }
+.resumo-fecho strong { color: var(--green-dark); font-weight: 800; }
+.faq { display: grid; gap: 8px; }
+details { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius-sm); transition: border-color 0.22s var(--ease), box-shadow 0.22s var(--ease); }
+details[open] { border-color: var(--line-green); box-shadow: var(--shadow); }
+summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 10px; font-family: var(--serif); font-size: 0.95rem; font-weight: 700; padding: 14px 16px; color: var(--ink); user-select: none; }
+summary::-webkit-details-marker { display: none; }
+summary:focus-visible { outline: 2px solid var(--green-strong); outline-offset: -2px; border-radius: var(--radius-sm); }
+summary .pl { width: 22px; height: 22px; position: relative; flex-shrink: 0; background: var(--bg-soft); border-radius: 6px; transition: background 0.22s var(--ease); }
+details[open] summary .pl { background: rgba(16,185,129,0.2); }
+summary .pl::before, summary .pl::after { content: ''; position: absolute; background: var(--green); top: 50%; left: 50%; transform: translate(-50%,-50%); }
+summary .pl::before { width: 11px; height: 2px; }
+summary .pl::after { width: 2px; height: 11px; transition: transform 0.28s var(--ease); }
+details[open] summary .pl::after { transform: translate(-50%,-50%) rotate(90deg); }
+details p { margin: 0; padding: 0 16px 14px; font-size: 0.9rem; animation: faqOpen 0.3s var(--ease-out); }
+@keyframes faqOpen { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+.final { text-align: center; background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(16,185,129,0.06) 0%, transparent 70%), var(--bg-2); }
+.final h2 { max-width: 16ch; margin: 0 auto 10px; }
+.final .ft { font-size: 1.05rem; color: var(--dim); max-width: 34ch; margin: 0 auto 24px; line-height: 1.6; }
+footer { padding: 36px 0 calc(36px + var(--safe-bottom)); text-align: center; border-top: 1px solid var(--line); }
+footer p { font-size: 0.73rem; color: var(--faint); max-width: 520px; margin: 0 auto 5px; }
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+::selection { background: rgba(16,185,129,0.25); color: var(--ink); }
+:focus-visible { outline: 2px solid var(--green-strong); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+  html { scroll-behavior: auto; }
+}
+.vsl-card {
+  width: calc(100% - 16px);
+  max-width: 380px;
+  margin: 12px auto 0;
+  background: var(--bg-2);
+  border: 1.5px solid var(--line-green);
+  border-radius: 16px;
+  box-shadow: 0 12px 40px -10px rgba(5, 150, 105, 0.18);
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+.vsl-card-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 14px 9px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--green-dark);
+  background: linear-gradient(180deg, var(--bg-soft), #fff);
+  border-bottom: 1px solid var(--line-green);
+}
+.vsl-card-label i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--rose);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
+  animation: blink 1.4s infinite;
+}
+.vsl-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  position: relative;
+  background: #0a0a0a;
+  overflow: hidden;
+}
+.vsl-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+.vsl-play {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.42) 100%);
+  transition: opacity 0.3s var(--ease), visibility 0.3s;
+}
+.vsl-play.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.vsl-play:focus-visible { outline: 3px solid var(--green-strong); outline-offset: -6px; }
+.vsl-play-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(165deg, var(--green-strong) 0%, var(--green) 45%, var(--green-dark) 100%);
+  box-shadow: 0 10px 28px -4px var(--green-glow), 0 0 0 5px rgba(255,255,255,0.22);
+  transition: transform var(--duration) var(--ease);
+}
+.vsl-play-icon::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.55);
+  animation: vslRing 2s ease-out infinite;
+}
+.vsl-play:hover .vsl-play-icon { transform: scale(1.06); }
+.vsl-play-icon svg { width: 30px; height: 30px; margin-left: 3px; fill: #fff; }
+@keyframes vslRing {
+  0% { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(1.55); opacity: 0; }
+}
+.hero .cta {
+  margin-top: 28px;
+  position: relative;
+  z-index: 2;
+}
+.provas { display: grid; grid-template-columns: 1fr; gap: 12px; max-width: 560px; margin: 0 auto; text-align: left; }
+.prova {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 16px 16px;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease);
+  position: relative;
+}
+.prova:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--line-green); }
+.prova-stars { color: #F59E0B; font-size: 0.85rem; letter-spacing: 0.08em; margin-bottom: 8px; line-height: 1; }
+.prova p { margin: 0 0 12px; font-size: 0.92rem; color: var(--ink); line-height: 1.55; max-width: none; }
+.prova-meta { display: flex; align-items: center; gap: 10px; }
+.prova-av {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--bg-soft), #d1fae5);
+  color: var(--green-dark); font-weight: 800; font-size: 0.8rem;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  border: 1px solid var(--line-green);
+}
+.prova-nome { font-size: 0.88rem; font-weight: 700; color: var(--ink); line-height: 1.2; }
+.prova-tag { font-size: 0.75rem; color: var(--faint); font-weight: 500; }
+</style>
+</head>
+<body>
+<section class="hero" aria-label="Apresentação">
+  <div class="wrap">
+    <h1>Cada noite ruim deixa a <span class="hl">próxima pior</span>. E o corpo tá entrando em modo de alerta.</h1>
+    <p class="lede">Em <span class="hl">5 dias</span> dá pra interromper esse ciclo — antes que ele se estabilize e vire rotina.</p>
+    
+    <div class="vsl-card">
+      <div class="vsl-card-label"><i aria-hidden="true"></i> Assista até o final · 2 min</div>
+      <div class="vsl-wrap">
+        <iframe id="vslPlayer" src="https://player.vimeo.com/video/1232587509?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Ouça até o final" allowfullscreen></iframe>
+        <button type="button" class="vsl-play" id="vslPlay" aria-label="Assistir ao vídeo">
+          <span class="vsl-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="cta">
+      <a class="btn btn-pulse" href="#oferta">QUERO INTERROMPER ESSE CICLO AGORA</a>
+      <p class="micro">Acesso imediato · Garantia de 7 dias · Risco zero</p>
+    </div>
+  </div>
+</section>
+
+<section class="story" aria-labelledby="hist-title">
+  <div class="wrap reveal">
+    <h2 id="hist-title">Você já percebeu que tá piorando, né?</h2>
+    <p>Uma noite ruim. Depois outra. Aí a terceira já vem com a mente mais ligada ainda.</p>
+    <p>Você deita cansada, mas o corpo parece que não recebeu o recado. Fica em alerta. O sono vem raso. Acorda pior do que deitou.</p>
+    <p>No outro dia a energia já começa no negativo. A tarde aperta mais cedo. O humor balança. E quando chega a noite de novo… a dificuldade de desligar tá maior.</p>
+    <p>Não é coincidência. É um <strong>ciclo se formando</strong>.</p>
+    <p>Cada noite mal resolvida aumenta o sinal de alerta da próxima. O corpo entra em modo de compensação. E quanto mais tempo passa, mais difícil fica sair dessa.</p>
+    <p class="punch">Não é falta de disciplina. É o <span class="hl">ciclo de noites ruins se consolidando</span>.</p>
+    <p style="margin-bottom:0;">Se você tá sentindo que tá ficando mais pesado a cada semana, o próximo bloco é pra você.</p>
+  </div>
+</section>
+
+<section class="bg-w" aria-labelledby="rec-title">
+  <div class="wrap center reveal">
+    <h2 id="rec-title">Marque quantas dessas já viraram rotina</h2>
+    <div class="g2" style="text-align:left; margin-top:12px;">
+      <div class="card"><h3>Noite ruim puxa a próxima</h3><p>Uma noite mal dormida e já parece que a seguinte vem pior. A mente fica mais ligada, o corpo mais em alerta.</p></div>
+      <div class="card"><h3>Acorda pior do que deitou</h3><p>O sono não recupera. Você levanta com a sensação de que a noite passou em vão.</p></div>
+      <div class="card"><h3>Energia caindo mais cedo</h3><p>A tarde aperta antes. O humor balança. O esforço de manhã não segura até o fim do dia.</p></div>
+      <div class="card"><h3>Sensação de que tá piorando</h3><p>Não é só “uma fase”. Parece que o ciclo tá se estabilizando e ficando cada vez mais difícil de quebrar.</p></div>
+    </div>
+    <p style="margin-top:22px; margin-bottom:0; font-size:0.95rem; max-width:42ch;">Se você marcou <span class="hl">duas ou mais</span>… o problema não é só a noite de ontem. É o ciclo que tá se formando.</p>
+  </div>
+</section>
+
+<section aria-label="Quebra de padrão">
+  <div class="wrap center reveal">
+    <p class="punch" style="margin:0 auto 12px; text-align:center;">E se cada noite ruim estiver <span class="hl">treinando o corpo</span> a ficar em alerta?</p>
+    <p style="margin:0 auto; font-size:0.95rem; max-width:40ch;">Quanto mais tempo passa, mais esse padrão se gruda. E sair depois fica bem mais difícil.</p>
+  </div>
+</section>
+
+<section class="bg-w story" aria-labelledby="exp-title">
+  <div class="wrap reveal">
+    <h2 id="exp-title">O que quase ninguém te conta</h2>
+    <p>A maioria trata noite ruim como evento isolado. “Foi uma noite mal dormida, amanhã eu recupero.”</p>
+    <p>Mas o corpo não funciona assim. Ele registra. Ele compensa. E cada noite em alerta aumenta o sinal da próxima.</p>
+    <p>É como se o relógio interno fosse aprendendo: “aqui a gente fica ligado”. E quanto mais noites seguidas no mesmo padrão, mais forte fica esse aprendizado.</p>
+    <p>Resultado? O ciclo se estabiliza. A dificuldade de desligar vira padrão. A energia de dia vai pro ralo. E a sensação de que “nada resolve” começa a aparecer.</p>
+    <p><strong>Não é fraqueza. É <span class="hl">modo de compensação</span> se consolidando.</strong></p>
+    <p style="margin-bottom:0;">A boa notícia: dá pra interromper esse ciclo. E quanto antes, melhor.</p>
+  </div>
+</section>
+
+<section aria-labelledby="mec-title">
+  <div class="wrap center reveal">
+    <h2 id="mec-title">Como o ciclo se forma (e como quebrar)</h2>
+    <p class="lede" style="margin-bottom:8px;">Não é mistério. É uma sequência que o corpo entende — e que a maioria deixa rolar sem perceber.</p>
+    <div class="fluxo" role="list" aria-label="Sequência do mecanismo">
+      <div class="fi" role="listitem">Noite mal resolvida</div><div class="fa" aria-hidden="true">↓</div>
+      <div class="fi hot" role="listitem">Corpo entra em alerta</div><div class="fa" aria-hidden="true">↓</div>
+      <div class="fi" role="listitem">Sinal de compensação aumenta</div><div class="fa" aria-hidden="true">↓</div>
+      <div class="fi" role="listitem">Próxima noite fica pior</div><div class="fa" aria-hidden="true">↓</div>
+      <div class="fi" role="listitem">Ciclo se estabiliza</div><div class="fa" aria-hidden="true">↓</div>
+      <div class="fi hot" role="listitem">Energia · humor · disposição despencam</div>
+    </div>
+    <p style="margin-top:24px; margin-bottom:0; font-size:0.95rem; max-width:42ch; margin-left:auto; margin-right:auto;">Quando você interrompe essa sequência cedo, o corpo para de compensar. O alerta diminui. E a noite volta a recuperar de verdade.</p>
+  </div>
+</section>
+
+<section class="bg-w" aria-labelledby="sol-title">
+  <div class="wrap center reveal">
+    <h2 id="sol-title">O que muda quando você quebra o ciclo</h2>
+    <p class="lede" style="margin-bottom:20px;">Não é “dormir mais”. É parar o efeito bola de neve — e fazer a noite voltar a trabalhar a seu favor.</p>
+    <div class="solucao-box" style="text-align:left;">
+      <h3>Imagine as próximas noites assim:</h3>
+      <p>Você para de aceitar que “amanhã eu recupero”. Tem um protocolo claro de 5 dias pra interromper o padrão de alerta antes que ele se grude de vez.</p>
+      <p>A mente começa a baixar a bola mais cedo. O corpo para de entrar em modo de compensação. E de manhã você sente que a noite realmente recuperou alguma coisa — em vez de só ter passado.</p>
+      <ul>
+        <li>Menos sensação de que “tá piorando a cada semana”</li>
+        <li>Noite menos em alerta e manhã menos pesada</li>
+        <li>Energia que segura mais durante o dia</li>
+        <li>Um caminho claro pra quando a noite não sai como planejado</li>
+        <li>A sensação de que você recuperou o controle do ciclo</li>
+      </ul>
+      <p style="margin-top:16px; margin-bottom:0;"><strong>Não é mudar a vida inteira. É interromper o ciclo agora — enquanto ainda dá pra fazer isso com mais facilidade.</strong></p>
+    </div>
+    <p style="margin-top:22px; margin-bottom:0; font-size:0.95rem; max-width:40ch;">Existe um método direto pra isso. Em <span class="hl">5 dias</span>.</p>
+  </div>
+</section>
+
+<section aria-labelledby="pil-title">
+  <div class="wrap-w center reveal">
+    <h2 id="pil-title">O sistema completo — 5 passos em 5 dias</h2>
+    <p class="lede" style="margin-bottom:22px;">Você não precisa virar outra pessoa. Precisa interromper a sequência que tá treinando o corpo a ficar em alerta.</p>
+    <div class="pilares" style="text-align:left;">
+      <article class="pilar"><div class="n" aria-hidden="true">01</div><h3>Identificar</h3><p>Enxergar exatamente onde o ciclo tá se formando e o que tá alimentando o modo de alerta.</p></article>
+      <article class="pilar"><div class="n" aria-hidden="true">02</div><h3>Interromper</h3><p>Quebrar o padrão de compensação nas primeiras noites, antes que ele se consolide.</p></article>
+      <article class="pilar"><div class="n" aria-hidden="true">03</div><h3>Sinalizar</h3><p>Mandar pro corpo o recado certo: agora pode desacelerar. Sem improviso.</p></article>
+      <article class="pilar"><div class="n" aria-hidden="true">04</div><h3>Proteger</h3><p>Blindar as noites seguintes pra o alerta não voltar com força total.</p></article>
+      <article class="pilar"><div class="n" aria-hidden="true">05</div><h3>Estabilizar</h3><p>Fixar o novo padrão e saber exatamente o que fazer se uma noite ruim aparecer de novo.</p></article>
+    </div>
+    <p style="margin-top:22px; margin-bottom:8px; font-size:0.95rem; max-width:42ch; margin-left:auto; margin-right:auto;">Cada passo sozinho ajuda. Os cinco em sequência, em 5 dias, <span class="hl">interrompem o ciclo de noites ruins</span>.</p>
+    <div class="cta" style="margin-top:22px;"><a class="btn" href="#oferta">QUERO ESSE MÉTODO NAS MINHAS MÃOS</a></div>
+  </div>
+</section>
+
+<section class="bg-w" aria-labelledby="5d-title">
+  <div class="wrap-w center reveal">
+    <h2 id="5d-title">5 dias pra interromper o ciclo</h2>
+    <p class="lede" style="margin-bottom:18px;">Não é “resolve em 5 dias e acabou”. É <span class="hl">5 dias</span> pra parar o efeito bola de neve e instalar um caminho claro de recuperação.</p>
+    <div class="ng" role="list">
+      <div class="nt" role="listitem"><div class="n">1</div><h3>Mapear</h3><p>Ver o padrão atual</p></div>
+      <div class="nt" role="listitem"><div class="n">2</div><h3>Quebrar</h3><p>Interromper o alerta</p></div>
+      <div class="nt" role="listitem"><div class="n">3</div><h3>Sinalizar</h3><p>Mandar o recado certo</p></div>
+      <div class="nt" role="listitem"><div class="n">4</div><h3>Proteger</h3><p>Blindar as noites</p></div>
+      <div class="nt" role="listitem"><div class="n">5</div><h3>Fixar</h3><p>Estabilizar o novo ciclo</p></div>
+    </div>
+    <p style="margin-top:24px; font-family:var(--serif); font-weight:800; color:var(--ink); font-size:1.1rem;">Você não precisa esperar o ciclo piorar mais. Precisa agir na <span class="hl">próxima noite</span>.</p>
+  </div>
+</section>
+
+<section aria-labelledby="cmp-title">
+  <div class="wrap center reveal">
+    <h2 id="cmp-title">O que muda entre o dia 1 e o dia 5</h2>
+    <p class="lede" style="margin-bottom:20px;">Do ciclo se formando ao ciclo interrompido — sem promessa milagrosa.</p>
+    <div class="compare">
+      <div class="compare-box"><h3>Dia 1</h3><ul>
+        <li>Noite ruim puxando a próxima. Mente mais ligada. Corpo em alerta.</li>
+        <li>Acorda pior. Energia já começa no negativo.</li>
+        <li>Sensação de que tá piorando e nada resolve.</li>
+        <li>Sem roteiro. Só tenta “se esforçar mais”.</li>
+      </ul></div>
+      <div class="compare-box depois"><h3>Dia 5</h3><ul>
+        <li>Ciclo de alerta interrompido. Transição mais fácil.</li>
+        <li>Manhã com mais leveza. Energia segura melhor.</li>
+        <li>Sensação de que recuperou o controle do padrão.</li>
+        <li>Roteiro claro. Sabe o que fazer se a noite falhar.</li>
+      </ul></div>
+    </div>
+    <p style="margin-top:18px; font-size:0.78rem; color:var(--faint); max-width:48ch; margin-left:auto; margin-right:auto;">Resultados variam de pessoa pra pessoa. O método organiza o padrão de noites e a recuperação. Não é programa de emagrecimento e não promete alteração de composição corporal.</p>
+  </div>
+</section>
+
+<section class="bg-w" aria-labelledby="mao-title">
+  <div class="wrap center reveal">
+    <h2 id="mao-title">O que muda na sua mão</h2>
+    <ul class="cl" style="text-align:left; margin-top:10px;">
+      <li>Enxergar como o ciclo de noites ruins se forma — e onde cortar</li>
+      <li>Interromper o modo de alerta antes que ele se estabilize</li>
+      <li>Ter um protocolo claro de 5 dias, sem improviso</li>
+      <li>Saber exatamente o que fazer depois de uma noite ruim</li>
+      <li>Reduzir a sensação de que “tá piorando a cada semana”</li>
+      <li>Recuperar manhãs menos pesadas e mais estabilidade no dia</li>
+    </ul>
+    <p style="margin-top:22px; margin-bottom:0; font-size:0.95rem; max-width:40ch;">Tudo isso entra no protocolo completo. E agora você vai ver exatamente o que recebe.</p>
+  </div>
+</section>
+
+<section class="bg-w" aria-labelledby="prova-title">
+  <div class="wrap center reveal">
+    <h2 id="prova-title">Quem interrompeu o ciclo conta assim</h2>
+    <p class="lede" style="margin-bottom:20px;">Gente real, no celular, falando do que sentiu.</p>
+    <div class="provas">
+      <article class="prova">
+        <div class="prova-stars" aria-label="5 de 5">★★★★★</div>
+        <p>“eu tava num ciclo que só piorava. uma noite ruim puxava a outra e eu já tava quase desistindo. nos primeiros dias do protocolo já senti a diferença, a mente baixou a bola mais cedo e a manhã parou de ser um martírio”</p>
+        <div class="prova-meta">
+          <div class="prova-av" aria-hidden="true">MR</div>
+          <div>
+            <div class="prova-nome">Mariana R.</div>
+            <div class="prova-tag">Fez o protocolo · 5 dias</div>
+          </div>
+        </div>
+      </article>
+      <article class="prova">
+        <div class="prova-stars" aria-label="5 de 5">★★★★★</div>
+        <p>“eu achava que era só estresse. quando entendi que cada noite ruim tava alimentando a próxima caiu a ficha. o passo a passo me deu um caminho sem ficar cobrando perfeição. hoje o ciclo parou de se agravar”</p>
+        <div class="prova-meta">
+          <div class="prova-av" aria-hidden="true">LP</div>
+          <div>
+            <div class="prova-nome">Larissa P.</div>
+            <div class="prova-tag">Fez o protocolo · 5 dias</div>
+          </div>
+        </div>
+      </article>
+      <article class="prova">
+        <div class="prova-stars" aria-label="5 de 5">★★★★★</div>
+        <p>“minha energia tava no chão e eu sentia que tava piorando. o protocolo me deu um roteiro claro. noite ruim nao virou desculpa pra largar tudo. no quinto dia eu já tava acordando bem diferente”</p>
+        <div class="prova-meta">
+          <div class="prova-av" aria-hidden="true">TF</div>
+          <div>
+            <div class="prova-nome">Thaís F.</div>
+            <div class="prova-tag">Fez o protocolo · 5 dias</div>
+          </div>
+        </div>
+      </article>
+    </div>
+    <p style="margin-top:18px; margin-bottom:0; font-size:0.78rem; color:var(--faint); max-width:48ch; margin-left:auto; margin-right:auto;">Relatos individuais. Resultado varia de pessoa pra pessoa. O método organiza o padrão de noites — não é programa de emagrecimento.</p>
+  </div>
+</section>
+
+<section id="oferta" style="padding-top:44px; padding-bottom:44px;" aria-labelledby="oferta-title">
+  <div class="wrap center reveal">
+    <div class="offer-box">
+      <span class="tag">Condição de lançamento</span>
+      <h2 id="oferta-title" style="font-size:clamp(1.2rem,3.2vw,1.5rem); margin-bottom:6px;">Tudo que você recebe hoje</h2>
+      <p style="margin:0 auto 14px; font-size:0.92rem; color:var(--dim); max-width:36ch;">Método + 5 dias de implementação + 3 ferramentas de suporte. Liberado na hora.</p>
+      <div class="stack" style="text-align:left;">
+        <div class="si main"><span class="nm"><span class="badge-main">Produto principal</span>Noite de Alerta — Protocolo de 5 Dias<small>O método completo: 5 passos + guia dia a dia pra interromper o ciclo de noites ruins antes que ele se estabilize.</small></span><span class="pr">R$ 97</span></div>
+        <div class="si bn"><span class="nm"><span class="badge-bn">Bônus</span>Checklist Anti-Alerta<small>A sequência curta pra aplicar nas primeiras noites e quebrar o padrão de compensação.</small></span><span class="pr">R$ 27</span></div>
+        <div class="si bn"><span class="nm"><span class="badge-bn">Bônus</span>Diário de Padrão Noturno<small>Registre o que tá alimentando o ciclo e veja a diferença em poucos dias.</small></span><span class="pr">R$ 27</span></div>
+        <div class="si bn"><span class="nm"><span class="badge-bn">Bônus</span>Plano de Resgate Pós-Noite Ruim<small>O que fazer quando a noite não sai como planejado — sem deixar o ciclo voltar com força.</small></span><span class="pr">R$ 27</span></div>
+        <div class="si tot"><span class="nm">Valor total do kit</span><span class="pr">R$ 178</span></div>
+      </div>
+      <div class="price-block">
+        <div class="de">De R$ 178 por apenas</div>
+        <span class="amt"><sup>R$</sup>37<span style="font-size:0.55em; vertical-align:baseline;">,90</span></span>
+        <div class="parc">ou 12x de R$ 3,72</div>
+        <div class="term">Pagamento único · Acesso liberado na hora</div>
+      </div>
+      <div class="urg" role="status" aria-live="polite">Essa condição some em <span class="tm" id="timer">14:59</span></div>
+      <div class="gar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3Z"/><path d="M9 12l2 2 4-4"/></svg>
+        <div><h3>Garantia Risco Zero — 7 dias</h3><p>Você entra, aplica os primeiros dias e testa. Se em até 7 dias achar que não faz sentido, pede o reembolso. 100% do valor. Sem enrolação. O risco fica do nosso lado.</p></div>
+      </div>
+      <div class="cta">
+        <a class="btn btn-pulse" href="#" role="button">SIM — QUERO INTERROMPER O CICLO POR R$ 37,90</a>
+        <p class="micro">Compra segura · Acesso imediato · Garantia de 7 dias</p>
+      </div>
+    </div>
+    <div class="resumo">
+      <p class="resumo-label">Em resumo</p>
+      <p class="resumo-texto">Um protocolo de <strong>5 dias</strong> pra interromper o ciclo de noites ruins: o corpo para de entrar em alerta, a noite volta a recuperar e o dia seguinte para de começar no negativo — sem dieta, sem suplemento e sem depender de motivação.</p>
+      <p class="resumo-fecho">Protocolo + 3 ferramentas · acesso na hora · garantia de 7 dias · <strong>R$ 37,90</strong></p>
+    </div>
+  </div>
+</section>
+
+<section class="bg-w" aria-labelledby="faq-title">
+  <div class="wrap reveal">
+    <h2 id="faq-title" class="center" style="margin-bottom:18px;">Ainda tá na dúvida?</h2>
+    <div class="faq">
+      <details open><summary>Isso é só um e-book?<span class="pl" aria-hidden="true"></span></summary><p>É digital, mas não é PDF pra ler e esquecer. É um sistema: método completo + guia dos 5 dias + 3 ferramentas pra aplicar de verdade.</p></details>
+      <details><summary>Preciso comprar suplemento ou aparelho?<span class="pl" aria-hidden="true"></span></summary><p>Não. O método usa rotina, horário e ambiente — coisas que você já tem em casa.</p></details>
+      <details><summary>Demora muito por noite?<span class="pl" aria-hidden="true"></span></summary><p>Minutos. Foi desenhado pra caber no final do dia, sem bagunçar sua agenda.</p></details>
+      <details><summary>Minha rotina de sono é uma bagunça. Serve pra mim?<span class="pl" aria-hidden="true"></span></summary><p>Serve. Parte do método existe exatamente pra interromper ciclos bagunçados. Não exige perfeição no primeiro dia.</p></details>
+      <details><summary>E se eu não gostar?<span class="pl" aria-hidden="true"></span></summary><p>Garantia de 7 dias. Não curtiu, pede reembolso. 100% do valor. Sem enrolação.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="final" aria-labelledby="final-title">
+  <div class="wrap reveal">
+    <h2 id="final-title">A próxima noite pode ser o começo da virada.</h2>
+    <p class="ft">5 passos. 5 dias. Um protocolo pra interromper o ciclo de noites ruins antes que ele se estabilize de vez.</p>
+    <div class="cta">
+      <a class="btn btn-pulse" href="#oferta">GARANTIR MEU ACESSO POR R$ 37,90</a>
+      <p class="micro">Condição de lançamento · Acesso na hora · Garantia de 7 dias</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Material educacional sobre hábitos de sono, ritmo circadiano e rotina. Não substitui orientação médica, nutricional ou psicológica. Não é programa de emagrecimento e não promete resultados específicos de composição corporal. Resultados variam.</p>
+  <p>© 2026 Noite de Alerta. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  try {
+    var k = 'nda_deadline', s = localStorage.getItem(k), d = s ? parseInt(s, 10) : 0;
+    if (!d || d < Date.now()) { d = Date.now() + 15 * 60 * 1000; localStorage.setItem(k, String(d)); }
+    var el = document.getElementById('timer');
+    function tick() {
+      var diff = Math.max(0, d - Date.now()), m = Math.floor(diff / 60000), sec = Math.floor((diff % 60000) / 1000);
+      if (el) el.textContent = (m < 10 ? '0' : '') + m + ':' + (sec < 10 ? '0' : '') + sec;
+      if (diff <= 0) { d = Date.now() + 15 * 60 * 1000; try { localStorage.setItem(k, String(d)); } catch (e) {} }
+    }
+    tick(); setInterval(tick, 1000);
+  } catch (e) {}
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+    reveals.forEach(function(r) { io.observe(r); });
+  } else { reveals.forEach(function(r) { r.classList.add('visible'); }); }
+  var cardGroups = document.querySelectorAll('.g2, .pilares, .ng');
+  if ('IntersectionObserver' in window) {
+    var cio = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (!e.isIntersecting) return;
+        Array.prototype.forEach.call(e.target.children, function(kid, i) {
+          kid.style.transitionDelay = (i * 0.05) + 's';
+          kid.style.opacity = '1';
+          kid.style.transform = 'none';
+        });
+        cio.unobserve(e.target);
+      });
+    }, { threshold: 0.08 });
+    cardGroups.forEach(function(g) {
+      Array.prototype.forEach.call(g.children, function(c) {
+        c.style.opacity = '0'; c.style.transform = 'translateY(12px)';
+        c.style.transition = 'opacity 0.45s cubic-bezier(0.16,1,0.3,1), transform 0.45s cubic-bezier(0.16,1,0.3,1)';
+      });
+      cio.observe(g);
+    });
+  }
+})();
+</script>
+
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script>
+(function () {
+  'use strict';
+  var frame = document.getElementById('vslPlayer');
+  var cue = document.getElementById('vslPlay');
+  if (!frame || !cue) return;
+  function fallback() {
+    cue.style.display = 'none';
+    frame.src = frame.src.replace('&controls=0', '').replace('controls=0&', '').replace('controls=0', '');
+  }
+  if (!(window.Vimeo && window.Vimeo.Player)) { fallback(); return; }
+  var player;
+  try { player = new window.Vimeo.Player(frame); } catch (e) { fallback(); return; }
+  cue.addEventListener('click', function () {
+    var p = player.play();
+    if (p && p.catch) p.catch(function () {});
+  });
+  player.on('play', function () { cue.classList.add('is-hidden'); });
+  player.on('pause', function () { cue.classList.remove('is-hidden'); });
+  player.on('ended', function () { cue.classList.remove('is-hidden'); });
+})();
+</script>
+
+</body>
+</html>
